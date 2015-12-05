@@ -2,6 +2,10 @@
   "name": "meshido-desktop",
   "version": "0.1.0",
   "description": "",
+  "keywords": [
+    "electron-app",
+    "electron"
+  ],
   "license": "UNLICENSED",
   "private": true,
   "repository": {
@@ -13,18 +17,10 @@
   "scripts": {
     "test": "xo",
     "start": "electron .",
-    "build:mac": "electron-packager . $npm_package_productName --platform=darwin --arch=x64 --version=$npm_package_electronVersion --out=dist --ignore='^/dist$'",
-    "build:win": "electron-packager . $npm_package_productName --platform=win32  --arch=x64 --version=$npm_package_electronVersion --out=dist --ignore='^/dist$'"
+    "build:mac": "electron-packager . $npm_package_productName --platform=darwin --arch=x64 --version=$npm_package_electronVersion --out=dist --ignore='^/dist$' --overwrite",
+    "build:win": "electron-packager . $npm_package_productName --platform=win32  --arch=x64 --version=$npm_package_electronVersion --out=dist --ignore='^/dist$' --overwrite"
   },
-  "files": [
-    "index.js",
-    "index.html",
-    "index.css"
-  ],
-  "keywords": [
-    "electron-app",
-    "electron"
-  ],
+  "main": "app.js",
   "dependencies": {
     "electron-debug": "^0.5.0"
   },
