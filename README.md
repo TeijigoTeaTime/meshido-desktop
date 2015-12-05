@@ -1,6 +1,27 @@
 # meshido-desktop
 
-## 開発環境の構築
+## 開発環境
+### プロジェクト構成
+
+★印・・・Gitの管理対象外
+
+```
+(project root)
+├── README.md
+├── app.js (アプリのエントリーポイントスクリプト)
+├── bower.json
+├── bower_components/ ★
+├── css/
+│   ├── index.css
+│   └── lib/ (bower管理外のサードパーティーライブラリ)
+├── dist/ (ビルド成果物(実行バイナリ)) ★
+├── index.html
+├── js/
+│   ├── index.js
+│   └── lib/ (bower管理外のサードパーティーライブラリ)
+├── node_modules/ ★
+└── package.json
+```
 
 ### 依存ライブラリのインストール
 
