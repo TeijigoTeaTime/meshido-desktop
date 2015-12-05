@@ -14,11 +14,12 @@
   },
   "scripts": {
     "postinstall": "bower install",
-    "test": "xo",
     "start": "electron .",
     "build:mac": "electron-packager . 'Meshido' --platform=darwin --arch=x64 --version=0.35.0 --out=dist --ignore='^/dist$' --overwrite",
     "build:win": "electron-packager . 'Meshido' --platform=win32  --arch=x64 --version=0.35.0 --out=dist --ignore='^/dist$' --overwrite",
-    "bower": "bower"
+    "bower": "bower",
+    "gulp": "gulp",
+    "lint": "gulp lint"
   },
   "main": "app.js",
   "dependencies": {
@@ -28,13 +29,9 @@
     "bower": "^1.6.9",
     "electron-packager": "^5.0.0",
     "electron-prebuilt": "^0.35.0",
-    "xo": "^0.11.1"
-  },
-  "xo": {
-    "esnext": true,
-    "envs": [
-      "node",
-      "browser"
-    ]
+    "eslint": "^1.10.3",
+    "eslint-config-xo": "^0.8.0",
+    "gulp": "^3.9.0",
+    "gulp-eslint": "^1.1.1"
   }
 }
