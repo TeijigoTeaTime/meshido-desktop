@@ -1,0 +1,8 @@
+{
+  "name": "meshido-desktop",
+  "license": "UNLICENSED",
+  "private": true,
+  "dependencies": {
+    "jquery": "~2.1.4"
+  }
+}

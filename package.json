@@ -15,16 +15,19 @@
   "productName": "Meshido",
   "electronVersion": "0.35.0",
   "scripts": {
+    "postinstall": "bower install",
     "test": "xo",
     "start": "electron .",
     "build:mac": "electron-packager . $npm_package_productName --platform=darwin --arch=x64 --version=$npm_package_electronVersion --out=dist --ignore='^/dist$' --overwrite",
-    "build:win": "electron-packager . $npm_package_productName --platform=win32  --arch=x64 --version=$npm_package_electronVersion --out=dist --ignore='^/dist$' --overwrite"
+    "build:win": "electron-packager . $npm_package_productName --platform=win32  --arch=x64 --version=$npm_package_electronVersion --out=dist --ignore='^/dist$' --overwrite",
+    "bower": "bower"
   },
   "main": "app.js",
   "dependencies": {
     "electron-debug": "^0.5.0"
   },
   "devDependencies": {
+    "bower": "^1.6.9",
     "electron-packager": "^5.0.0",
     "electron-prebuilt": "^0.35.0",
     "xo": "^0.11.1"

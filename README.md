@@ -1,8 +1,14 @@
 # meshido-desktop
 
-## アプリの起動
+## 開発環境の構築
 
-(開発中に動作確認を行う場合)
+### 依存ライブラリのインストール
+
+```bash
+npm install
+```
+
+### アプリの起動
 
 ```bash
 npm start
