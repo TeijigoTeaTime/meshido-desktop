@@ -1,6 +1,21 @@
 # meshido-desktop
 
 ## 開発環境
+
+### 構築手順
+
+```bash
+git clone https://github.com/TeijigoTeaTime/meshido-desktop.git
+cd meshido-desktop
+npm install
+```
+
+### アプリの起動
+
+```bash
+npm start
+```
+
 ### プロジェクト構成
 
 ★印・・・Gitの管理対象外
@@ -21,18 +36,6 @@
 │   └── lib/ (bower管理外のサードパーティーライブラリ)
 ├── node_modules/ ★
 └── package.json
-```
-
-### 依存ライブラリのインストール
-
-```bash
-npm install
-```
-
-### アプリの起動
-
-```bash
-npm start
 ```
 
 ## アプリのビルド
