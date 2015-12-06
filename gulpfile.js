@@ -2,6 +2,14 @@
 
 var gulp = require('gulp');
 var eslint = require('gulp-eslint');
+var csslint = require('gulp-csslint');
+
+gulp.task('csslint', function () {
+	return gulp.src(['css/**/*.css', '!css/lib/**'])
+		.pipe(csslint())
+		.pipe(csslint.reporter())
+		.pipe(csslint.reporter('fail'));
+});
 
 gulp.task('eslint', function () {
 	return gulp.src(['js/**/*.js','!js/lib/**', '!node_modules/**', '!bower_components/**'])
@@ -16,4 +24,4 @@ gulp.task('eslint', function () {
 		.pipe(eslint.failOnError());
 });
 
-gulp.task('lint', ['eslint']);
+gulp.task('lint', ['csslint', 'eslint']);
