@@ -12,14 +12,12 @@
     "type": "git",
     "url": "https://github.com/TeijigoTeaTime/meshido-desktop.git"
   },
-  "productName": "Meshido",
-  "electronVersion": "0.35.0",
   "scripts": {
     "postinstall": "bower install",
     "test": "xo",
     "start": "electron .",
-    "build:mac": "electron-packager . $npm_package_productName --platform=darwin --arch=x64 --version=$npm_package_electronVersion --out=dist --ignore='^/dist$' --overwrite",
-    "build:win": "electron-packager . $npm_package_productName --platform=win32  --arch=x64 --version=$npm_package_electronVersion --out=dist --ignore='^/dist$' --overwrite",
+    "build:mac": "electron-packager . 'Meshido' --platform=darwin --arch=x64 --version=0.35.0 --out=dist --ignore='^/dist$' --overwrite",
+    "build:win": "electron-packager . 'Meshido' --platform=win32  --arch=x64 --version=0.35.0 --out=dist --ignore='^/dist$' --overwrite",
     "bower": "bower"
   },
   "main": "app.js",
