@@ -1,0 +1,40 @@
+{
+  "name": "meshido-desktop",
+  "version": "0.1.0",
+  "description": "",
+  "keywords": [
+    "electron-app",
+    "electron"
+  ],
+  "license": "UNLICENSED",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/TeijigoTeaTime/meshido-desktop.git"
+  },
+  "scripts": {
+    "postinstall": "bower install",
+    "test": "xo",
+    "start": "electron .",
+    "build:mac": "electron-packager . 'Meshido' --platform=darwin --arch=x64 --version=0.35.0 --out=dist --ignore='^/dist$' --overwrite",
+    "build:win": "electron-packager . 'Meshido' --platform=win32  --arch=x64 --version=0.35.0 --out=dist --ignore='^/dist$' --overwrite",
+    "bower": "bower"
+  },
+  "main": "app.js",
+  "dependencies": {
+    "electron-debug": "^0.5.0"
+  },
+  "devDependencies": {
+    "bower": "^1.6.9",
+    "electron-packager": "^5.0.0",
+    "electron-prebuilt": "^0.35.0",
+    "xo": "^0.11.1"
+  },
+  "xo": {
+    "esnext": true,
+    "envs": [
+      "node",
+      "browser"
+    ]
+  }
+}
