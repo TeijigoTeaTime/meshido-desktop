@@ -25,18 +25,16 @@ $(document).ready(function() {
 		var name = $('#login-name').val();
 
 		login(email, name).then(function(user) {
+			console.log(user);
+
 			// ストレージにユーザ情報を保存
-			localforage.setItem('user', user).then(function() {
-				console.log(user);
+			$$.storage.setItem('user', user);
 
-				// ログインダイアログを閉じる
-				$loginModal.closeModal();
-				// カレンダーを表示する
-				$(document).trigger('display-calendar');
+			// ログインダイアログを閉じる
+			$loginModal.closeModal();
 
-			}, function(err) {
-				console.log(err);
-			});
+			// カレンダーを表示する
+			$(document).trigger('display-calendar');
 		});
 	});
 
