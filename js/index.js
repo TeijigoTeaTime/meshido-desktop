@@ -13,4 +13,16 @@ $(document).ready(function() {
 		$(document).trigger('open-login-modal');
 	}
 
+	// FIXME: 動作確認用の一時コード(あとで削除する)
+	$$.ajax({
+		url: '/',
+		method: 'POST',
+		data: {
+			email: 'taro.yamada@example.com',
+			name: 'Taro Yamada'
+		}
+	}).done(function(json) {
+		console.log('Response = ' + JSON.stringify(json));
+	});
+
 });
