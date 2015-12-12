@@ -16,13 +16,12 @@ $$.storage = {
 	removeItem: function (key) {
 		localStorage.removeItem(key);
 	},
-	clear: function() {
+	clear: function () {
 		localStorage.clear();
 	}
 };
 
-$(document).ready(function() {
-
+$(document).ready(function () {
 	var user = $$.storage.getItem('user');
 
 	if (user) {
@@ -33,5 +32,4 @@ $(document).ready(function() {
 		// ログインダイアログを表示
 		$(document).trigger('open-login-modal');
 	}
-
 });

@@ -55,7 +55,14 @@ gulp.task('eslint', function () {
 			envs: [
 				'browser',
 				'jquery'
-			]
+			],
+			globals: {
+				'$$': true
+			},
+			rules: {
+				'new-cap': [2, {'capIsNewExceptions': ['$.Deferred']}],
+				'quote-props': [2, 'as-needed', { 'keywords': true, 'unnecessary': false }]
+			}
 		}))
 		.pipe(eslint.format())
 		.pipe(eslint.failOnError());
