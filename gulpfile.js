@@ -42,14 +42,14 @@ gulp.task('htmlhint', function() {
 });
 
 gulp.task('csslint', function () {
-	return gulp.src(['src/css/*.css', '!src/css/lib/**'])
+	return gulp.src(['src/css/**/*.css'])
 		.pipe(csslint())
 		.pipe(csslint.reporter())
 		.pipe(csslint.reporter('fail'));
 });
 
 gulp.task('eslint', function () {
-	return gulp.src(['src/js/**/*.js','!src/js/lib/**'])
+	return gulp.src(['src/js/**/*.js'])
 		.pipe(eslint({
 			extends: 'xo/browser',
 			envs: [
