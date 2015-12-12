@@ -1,7 +1,6 @@
 'use strict';
 
-$(document).ready(function() {
-
+$(document).ready(function () {
 	var user = $$.storage.getItem('user');
 
 	if (user) {
@@ -21,8 +20,7 @@ $(document).ready(function() {
 			email: 'taro.yamada@example.com',
 			name: 'Taro Yamada'
 		}
-	}).done(function(json) {
+	}).done(function (json) {
 		console.log('Response = ' + JSON.stringify(json));
 	});
-
 });

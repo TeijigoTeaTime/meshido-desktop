@@ -61,7 +61,8 @@ gulp.task('eslint', function () {
 			},
 			rules: {
 				'new-cap': [2, {'capIsNewExceptions': ['$.Deferred']}],
-				'quote-props': [2, 'as-needed', { 'keywords': true, 'unnecessary': false }]
+				'quote-props': [2, 'as-needed', { 'keywords': true, 'unnecessary': false }],
+				'no-unused-expressions': [2, { allowShortCircuit: true, allowTernary: true }]
 			}
 		}))
 		.pipe(eslint.format())

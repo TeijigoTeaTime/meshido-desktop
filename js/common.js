@@ -6,7 +6,6 @@ window.$$ = {
 };
 
 (function ($, $$) {
-
 	/**
 	 * localStorage のラッパー
 	 */
@@ -21,7 +20,7 @@ window.$$ = {
 		removeItem: function (key) {
 			localStorage.removeItem(key);
 		},
-		clear: function() {
+		clear: function () {
 			localStorage.clear();
 		}
 	};
@@ -32,7 +31,7 @@ window.$$ = {
 	 * @param {Object} ajaxOpt $.ajaxのオプション
 	 * @return {Promise} jqXHRオブジェクト
 	 */
-	$$.ajax = function(ajaxOpt) {
+	$$.ajax = function (ajaxOpt) {
 		var user = $$.storage.getItem('user');
 		var userToken = user ? user.token : '';
 
@@ -60,11 +59,11 @@ window.$$ = {
 	 * @param {Function} always 常に実行する共通処理 (optional)
 	 * @return {Promise} jqXHRオブジェクト
 	 */
-	var ajax = function (ajaxOpt, done, fail, always) {
+	function ajax(ajaxOpt, done, fail, always) {
 		var jqXHR = $.ajax(ajaxOpt);
 		var defer = $.Deferred();
 
-		jqXHR.done(function(data, statusText, jqXHR) {
+		jqXHR.done(function (data, statusText, jqXHR) {
 			console.log(data, statusText, jqXHR);
 
 			if (done && done(data, statusText, jqXHR) === false) {
@@ -74,7 +73,7 @@ window.$$ = {
 			defer.resolveWith(this, arguments);
 		});
 
-		jqXHR.fail(function(jqXHR, statusText, errorThrown) {
+		jqXHR.fail(function (jqXHR, statusText, errorThrown) {
 			console.log(jqXHR, statusText, errorThrown);
 
 			if (fail && fail(jqXHR, statusText, errorThrown) === false) {
@@ -84,11 +83,10 @@ window.$$ = {
 			defer.rejectWith(this, arguments);
 		});
 
-		jqXHR.always(function() {
+		jqXHR.always(function () {
 			always && always();
 		});
 
 		return $.extend({}, jqXHR, defer.promise());
-	};
-
+	}
 })(jQuery, window.$$);
