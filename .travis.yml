@@ -1,0 +1,10 @@
+language: node_js
+node_js:
+  - '4.1'
+script: npm run lint
+notifications:
+  slack:
+    rooms:
+      secure: pRPRingt7VoAFP44tA0So9Li8IqBdaQ+W2ykd/nZstQX3ioyVYEL+VfZgbl6namj775mdFegUwZvJCgx0t/GKM60JfCgrf3tMf1DhTQgObZnSJfO7Ul13Mb37h1m8Kh5nGB+kV/geZwXJOrKs28VBwytUK9b7fMmNWNINfyHO5fIu3Fds30FGPMP27e4SvAu8Ho/UB8qxxpnQB1rTOl8vjY7OIcAIxqvUVGjaYr8EllCniyE+Mz+V0qsl8vrKACV9GziDRXZi25SZVYT80MDj5eD0qtaE2UcoBdh+42xW8wE+m9YmVj6w3THTy8aSM4ijiu/uQF/k7+RXSfvB9HeOB+BfGSMHUh8830Z+kaiFbZXJIGJ+luLlRBFLk38FyIXACrwFQ/uKjAKQEqsTnFXcihDc1h+35rgCbIICh1coORROmc4ZeXlLxBOja/iUmsAcljEm6C3duG5EApOrn92nkKD47je6XIa7A1Ox585jlkT6rwqToTZ8OavFShYSW+EbT0PpGhFmjQcRBncCnb593fKR8rhjvlkf8rfn8XH8obLi8mdT4aZ8QyHDvdfor1epc6SGQrXn3aLx67rlRrYFzN4t3wRQ8eg7LXCsdM2WRK68YFrz4WTyrPRxnqmq6Z1QjQmNrNuda9v26VULLbn9NRqBiqisG33Hg+F9HBfRYo=
+    on_success: always
+    on_failure: always

@@ -1,5 +1,7 @@
 # meshido-desktop
 
+[![Build Status](https://travis-ci.org/TeijigoTeaTime/meshido-desktop.svg?branch=master)](https://travis-ci.org/TeijigoTeaTime/meshido-desktop)
+
 ## 開発環境
 
 ### 構築手順
@@ -15,6 +17,17 @@ npm install
 ```bash
 npm start
 ```
+
+### ソースコードの静的解析
+
+```bash
+npm run lint
+```
+以下のツールによるソースコードの静的解析が実行される
+
+* [HTMLHint](https://github.com/yaniswang/HTMLHint)
+* [CSSLint](https://github.com/CSSLint/csslint)
+* [ESLint](https://github.com/eslint/eslint)
 
 ### プロジェクト構成
 
