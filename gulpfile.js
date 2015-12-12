@@ -6,7 +6,7 @@ var eslint = require('gulp-eslint');
 var csslint = require('gulp-csslint');
 
 gulp.task('htmlhint', function() {
-	return gulp.src('index.html')
+	return gulp.src(['src/**/*.html', '!src/bower_components/**'])
 		.pipe(htmlhint({
 			// https://github.com/yaniswang/HTMLHint/wiki/Rules
 			// Standard
@@ -42,14 +42,14 @@ gulp.task('htmlhint', function() {
 });
 
 gulp.task('csslint', function () {
-	return gulp.src(['css/**/*.css', '!css/lib/**'])
+	return gulp.src(['src/css/**/*.css'])
 		.pipe(csslint())
 		.pipe(csslint.reporter())
 		.pipe(csslint.reporter('fail'));
 });
 
 gulp.task('eslint', function () {
-	return gulp.src(['js/**/*.js','!js/lib/**', '!node_modules/**', '!bower_components/**'])
+	return gulp.src(['src/js/**/*.js'])
 		.pipe(eslint({
 			extends: 'xo/browser',
 			envs: [

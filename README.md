@@ -38,17 +38,15 @@ npm run lint
 ├── README.md
 ├── app.js (アプリのエントリーポイントスクリプト)
 ├── bower.json
-├── bower_components/ ★
-├── css/
-│   ├── index.css
-│   └── lib/ (bower管理外のサードパーティーライブラリ)
 ├── dist/ (ビルド成果物(実行バイナリ)) ★
-├── index.html
-├── js/
-│   ├── index.js
-│   └── lib/ (bower管理外のサードパーティーライブラリ)
+├── gulpfile.js
 ├── node_modules/ ★
-└── package.json
+├── package.json
+└── src/
+    ├── bower_components/ ★
+    ├── css/
+    ├── index.html
+    └── js/
 ```
 
 ## アプリのビルド
