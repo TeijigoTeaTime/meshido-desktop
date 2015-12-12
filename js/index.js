@@ -1,26 +1,5 @@
 'use strict';
 
-window.$$ = {};
-
-/**
- * localStorage のラッパー
- */
-$$.storage = {
-	setItem: function (key, value) {
-		localStorage.setItem(key, JSON.stringify(value));
-	},
-	getItem: function (key) {
-		var item = localStorage.getItem(key);
-		return item === null ? null : JSON.parse(item);
-	},
-	removeItem: function (key) {
-		localStorage.removeItem(key);
-	},
-	clear: function() {
-		localStorage.clear();
-	}
-};
-
 $(document).ready(function() {
 
 	var user = $$.storage.getItem('user');
