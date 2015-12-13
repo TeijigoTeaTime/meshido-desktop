@@ -1,37 +1,36 @@
 <!doctype html>
 <html>
 <head>
-	<meta charset="utf-8">
-	
+	<meta charset="utf-8">	
 	<title>Electron boilerplate</title>
 	<!-- CSS -->
-	<link rel="stylesheet" href="bower_components/Materialize/dist/css/materialize.css">
+	<link rel="stylesheet" href="bower_components/Materialize/dist/css/materialize.css" />
 	<link rel="stylesheet" href="css/index.css">
 	<link rel="stylesheet" type="text/css" href="bower_components/Calendario/css/demo.css" />
 	<link rel="stylesheet" type="text/css" href="bower_components/Calendario/css/calendar.css" />
 	<link rel="stylesheet" type="text/css" href="css/calendar_custom.css" />
-
 	<!-- JS -->
 	<script src="bower_components/jquery/dist/jquery.js"></script>
 	<script src="bower_components/Materialize/dist/js/materialize.js"></script>
+	<script src="js/common.js"></script>
 	<script src="js/login.js"></script>
 	<script src="js/calendar.js"></script>
 	<script src="js/index.js"></script>
 	<script src="bower_components/Calendario/js/modernizr.custom.63321.js"></script>
 </head>
 <body>
-<!-- ログインダイアログ -->
+	<!-- ログインダイアログ -->
 	<div id="login-modal" class="modal">
 		<div class="modal-content">
 			<div class="row">
 				<div class="input-field col s12">
-					<input id="login-email" type="email" class="validate">
+					<input id="login-email" type="email" class="validate" />
 					<label for="login-email">メールアドレス</label>
 				</div>
 			</div>
 			<div class="row">
 				<div class="input-field col s12">
-					<input id="login-name" type="text" class="validate">
+					<input id="login-name" type="text" class="validate" />
 					<label for="login-name">名前</label>
 				</div>
 			</div>

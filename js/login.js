@@ -1,30 +1,29 @@
 'use strict';
 
-$(document).ready(function() {
-
+$(document).ready(function () {
 	var $loginModal = $('#login-modal');
 
 	/**
 	 * ログインダイアログを表示するEvent
 	 */
-	$(document).on('open-login-modal', function() {
+	$(document).on('open-login-modal', function () {
 		$loginModal.openModal({
 			dismissible: false,
-			opacity: .2,
-			in_duration: 300
+			opacity: '.2',
+			'in_duration': 300
 		});
 	});
 
 	/**
 	 * ログインボタン押下時のEvent
 	 */
-	$loginModal.on('click', '.js-login-btn', function(e) {
+	$loginModal.on('click', '.js-login-btn', function (e) {
 		e.preventDefault();
 
 		var email = $('#login-email').val();
 		var name = $('#login-name').val();
 
-		login(email, name).then(function(user) {
+		login(email, name).then(function (user) {
 			console.log(user);
 
 			// ストレージにユーザ情報を保存
@@ -45,7 +44,7 @@ $(document).ready(function() {
 	 * @param {String} name 名前
 	 * @returns {Promise}
 	 */
-	var login = function(email, name) {
+	function login(email, name) {
 		// TODO: サーバにリクエストを投げる
 		var defer = $.Deferred();
 		defer.resolve({
@@ -54,6 +53,5 @@ $(document).ready(function() {
 			token: 'api-token'
 		});
 		return defer.promise();
-	};
-
+	}
 });

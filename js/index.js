@@ -1,28 +1,6 @@
 'use strict';
 
-window.$$ = {};
-
-/**
- * localStorage のラッパー
- */
-$$.storage = {
-	setItem: function (key, value) {
-		localStorage.setItem(key, JSON.stringify(value));
-	},
-	getItem: function (key) {
-		var item = localStorage.getItem(key);
-		return item === null ? null : JSON.parse(item);
-	},
-	removeItem: function (key) {
-		localStorage.removeItem(key);
-	},
-	clear: function() {
-		localStorage.clear();
-	}
-};
-
-$(document).ready(function() {
-
+$(document).ready(function () {
 	var user = $$.storage.getItem('user');
 
 	if (user) {
@@ -34,4 +12,15 @@ $(document).ready(function() {
 		$(document).trigger('open-login-modal');
 	}
 
+	// FIXME: 動作確認用の一時コード(あとで削除する)
+	$$.ajax({
+		url: '/',
+		method: 'POST',
+		data: {
+			email: 'taro.yamada@example.com',
+			name: 'Taro Yamada'
+		}
+	}).done(function (json) {
+		console.log('Response = ' + JSON.stringify(json));
+	});
 });
