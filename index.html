@@ -5,18 +5,19 @@
 	<title>Electron boilerplate</title>
 	<!-- CSS -->
 	<link rel="stylesheet" href="bower_components/Materialize/dist/css/materialize.css" />
-	<link rel="stylesheet" href="css/index.css">
-	<link rel="stylesheet" type="text/css" href="bower_components/Calendario/css/demo.css" />
 	<link rel="stylesheet" type="text/css" href="bower_components/Calendario/css/calendar.css" />
+	<link rel="stylesheet" type="text/css" href="bower_components/Calendario/css/demo.css" />
 	<link rel="stylesheet" type="text/css" href="css/calendar_custom.css" />
+	<link rel="stylesheet" href="css/index.css">
 	<!-- JS -->
 	<script src="bower_components/jquery/dist/jquery.js"></script>
 	<script src="bower_components/Materialize/dist/js/materialize.js"></script>
+	<script type="text/javascript" src="bower_components/Calendario/js/calendario.js"></script>
+	<script type="text/javascript" src="js/calendario_data.js"></script>
 	<script src="js/common.js"></script>
 	<script src="js/login.js"></script>
 	<script src="js/calendar.js"></script>
 	<script src="js/index.js"></script>
-	<script src="bower_components/Calendario/js/modernizr.custom.63321.js"></script>
 </head>
 <body>
 	<!-- ログインダイアログ -->
@@ -43,7 +44,6 @@
 		<!--/ Codrops top bar -->
 		<div class="custom-calendar-wrap custom-calendar-full">
 			<div class="custom-header clearfix">
-				<h2>Test Carendario</h2>
 				<h3 class="custom-month-year">
 					<span id="custom-month" class="custom-month"></span>
 					<span id="custom-year" class="custom-year"></span>
@@ -56,35 +56,6 @@
 			</div>
 			<div id="calendar" class="fc-calendar-container"></div>
 		</div>
-	</div><!-- /container -->
-	<script type="text/javascript" src="bower_components/Calendario/js/calendario.js"></script>
-	<script type="text/javascript" src="js/calendario_data.js"></script>
-	<script type="text/javascript">	
-		$(function() {				
-			function updateMonthYear() {
-				$( '#custom-month' ).html( $( '#calendar' ).calendario('getMonthName') );
-				$( '#custom-year' ).html( $( '#calendar' ).calendario('getYear'));
-			}	
-			$(document).on('finish.calendar.calendario', function(e){
-                $( '#custom-month' ).html( $( '#calendar' ).calendario('getMonthName') );
-				$( '#custom-year' ).html( $( '#calendar' ).calendario('getYear'));
-				$( '#custom-next' ).on( 'click', function() {
-					$( '#calendar' ).calendario('gotoNextMonth', updateMonthYear);
-				} );
-				$( '#custom-prev' ).on( 'click', function() {
-					$( '#calendar' ).calendario('gotoPreviousMonth', updateMonthYear);
-				} );
-				$( '#custom-current' ).on( 'click', function() {
-					$( '#calendar' ).calendario('gotoNow', updateMonthYear);
-				} );
-            });
-				
-			$( '#calendar' ).calendario({
-				checkUpdate : false,
-				caldata : events,
-				fillEmpty : false
-			});
-		});
-	</script>
+	</div>
 </body>
 </html>

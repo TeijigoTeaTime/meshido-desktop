@@ -272,9 +272,3 @@ body {
 	background: rgba(255,255,255,0.3);
 }
 
-@media screen and (max-width: 880px) , screen and (max-height: 450px) {
-	html, body, .container {
-	}
-
-
-}
