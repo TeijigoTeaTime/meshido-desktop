@@ -57,7 +57,9 @@ gulp.task('eslint', function () {
 				'jquery'
 			],
 			globals: {
-				'$$': true
+				'$$': true,
+				// FIXME: カレンダーの予定はサーバから取得する
+				'events': true
 			},
 			rules: {
 				'new-cap': [2, {'capIsNewExceptions': ['$.Deferred']}],
