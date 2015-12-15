@@ -1,12 +1,10 @@
 body {
 	background: #1E90FF;
-
-
 	background-size: 100% 100%;
 }
 
 
-.custom-calendar-full {
+.msd-container .custom-calendar-full {
 	position: absolute;
 	top: 24px;
 	bottom: 0;
@@ -15,7 +13,7 @@ body {
 	height: auto;
 }
 
-.fc-calendar-container {
+.msd-container .fc-calendar-container {
 	min-height: 450px;
 	min-width: 880px;
 	height: auto;
@@ -25,14 +23,14 @@ body {
 	position: absolute;
 }
 
-.custom-header {
+.msd-container .custom-header {
 	padding: 20px 20px 10px 30px;
 	height: 50px;
 	position: relative;
 }
 
-.custom-header h2,
-.custom-header h3 {
+.msd-container .custom-header h2,
+.msd-container .custom-header h3 {
 	float: left;
 	font-weight: 300;
 	text-transform: uppercase;
@@ -43,28 +41,28 @@ body {
 }
 
 
-.custom-header h2 {
+.msd-container .custom-header h2 {
 	color: #00008b;
 	width: 60%;
 }
 
-.custom-header h2 a,
-.custom-header h2 span {
+.msd-container .custom-header h2 a,
+.msd-container .custom-header h2 span {
 	color: rgba(255,255,255,0.3);
 	font-size: 18px;
 	letter-spacing: 3px;
 	white-space: nowrap;
 }
 
-.custom-header h2 a {
+.msd-container .custom-header h2 a {
 	color: rgba(255,255,255,0.5);
 }
 
-.no-touch .custom-header h2 a:hover {
+.msd-container .no-touch .custom-header h2 a:hover {
 	color: rgba(255,255,255,0.9);
 }
 
-.custom-header h3 {
+.msd-container .custom-header h3 {
 	width: 40%;
 	color: #ddd;
 	color: rgba(255,255,255,0.6);
@@ -74,7 +72,7 @@ body {
 	padding-right: 125px;
 }
 
-.custom-header nav {
+.msd-container .custom-header nav {
 	position: absolute;
 	right: 20px;
 	top: 20px;
@@ -89,7 +87,7 @@ body {
 	user-select: none;
 }
 
-.custom-header nav span {
+.msd-container .custom-header nav span {
 	float: left;
 	width: 30px;
 	height: 30px;
@@ -104,15 +102,15 @@ body {
 	line-height: 1.5;
 }
 
-.custom-header nav span:first-child {
+.msd-container .custom-header nav span:first-child {
 	border-radius: 3px 0 0 3px;
 }
 
-.custom-header nav span:hover {
+.msd-container .custom-header nav span:hover {
 	background: rgba(255,255,255,0.5);
 }
 
-.custom-header span:before {
+.msd-container .custom-header span:before {
 	font-family: 'fontawesome-selected';
 	color: #fff;
 	display: inline-block;
@@ -121,25 +119,25 @@ body {
 	text-indent: 4px;
 }
 
-.custom-header nav span.custom-prev:before {
+.msd-container .custom-header nav .custom-prev:before {
 	content: '\25c2';
 }
 
-.custom-header nav span.custom-next:before {
+.msd-container .custom-header nav .custom-next:before {
 	content: '\25b8';
 }
 
-.custom-header nav span:last-child {
+.msd-container .custom-header nav span:last-child {
 	margin-left: 20px;
 	border-radius: 3px;
 }
 
-.custom-header nav span.custom-current:before {
+.msd-container .custom-header nav .custom-current:before {
 	content: '\27a6';
 }
 
 
-.fc-calendar {
+.msd-container .fc-calendar {
 	background: rgba(255,255,255,0.1);
 	width: auto;
 	top: 10px;
@@ -151,7 +149,7 @@ body {
 	position: absolute;
 }
 
-.fc-calendar .fc-head {
+.msd-container .fc-calendar .fc-head {
 	background: rgba(255,255,255,0.2);
 	color: rgba(255,255,255,0.9);
 	box-shadow: inset 0 1px 0 rgba(255,255,255,0.2);
@@ -161,7 +159,7 @@ body {
 	padding: 0 20px;
 }
 
-.fc-calendar .fc-head > div {
+.msd-container .fc-calendar .fc-head > div {
 	font-weight: 300;
 	text-transform: uppercase;
 	font-size: 14px;
@@ -169,7 +167,7 @@ body {
 	text-shadow: 0 1px 1px rgba(0,0,0,0.4);
 }
 
-.fc-calendar .fc-row > div > span.fc-date {
+.msd-container .fc-calendar .fc-row > div > .fc-date {
 	color: rgba(255,255,255,0.9);
 	text-shadow: none;
 	font-size: 26px;
@@ -182,57 +180,57 @@ body {
 	text-shadow: 0 1px 1px rgba(0,0,0,0.3);
 }
 
-.fc-calendar .fc-row > div > span.fc-emptydate {
+.msd-container .fc-calendar .fc-row > div > .fc-emptydate {
 	color: rgba(255,255,255,0.4);
 }
 
-.fc-calendar .fc-body {
+.msd-container .fc-calendar .fc-body {
 	border: none;
 	padding: 20px;
 }
 
-.fc-calendar .fc-row {
+.msd-container .fc-calendar .fc-row {
 	box-shadow: inset 0 -1px 0 rgba(255,255,255,0.2);
 	border: none;
 }
 
-.fc-calendar .fc-row:last-child {
+.msd-container .fc-calendar .fc-row:last-child {
 	box-shadow: none;
 }
 
-.fc-calendar .fc-row:first-child > div:first-child {
+.msd-container .fc-calendar .fc-row:first-child > div:first-child {
 	border-radius: 10px 0 0 0;
 }
 
-.fc-calendar .fc-row:first-child > div:last-child {
+.msd-container .fc-calendar .fc-row:first-child > div:last-child {
 	border-radius: 0 10px 0 0;
 }
 
-.fc-calendar .fc-row:last-child > div:first-child {
+.msd-container .fc-calendar .fc-row:last-child > div:first-child {
 	border-radius: 0 0 0 10px;
 }
 
-.fc-calendar .fc-row:last-child > div:last-child {
+.msd-container .fc-calendar .fc-row:last-child > div:last-child {
 	border-radius: 0 0 10px 0;
 }
 
-.fc-calendar .fc-row > div {
+.msd-container .fc-calendar .fc-row > div {
 	box-shadow: -1px 0 0 rgba(255, 255, 255, 0.2);
 	border: none;
 	padding: 10px;
 	cursor: pointer;
 }
 
-.fc-calendar .fc-row > div:first-child{
+.msd-container .fc-calendar .fc-row > div:first-child{
 	box-shadow: none;
 }
 
-.fc-calendar .fc-row > div.fc-today {
+.msd-container .fc-calendar .fc-row > .fc-today {
 	background: transparent;
 	box-shadow: inset 0 0 100px rgba(255,255,255,0.1);
 }
 
-.fc-calendar .fc-row > div.fc-today:after {
+.msd-container .fc-calendar .fc-row > .fc-today:after {
 	content: '';
 	display: block;
 	position: absolute;
@@ -248,12 +246,12 @@ body {
 	background: linear-gradient(top, rgba(255, 255, 255, 0.15), rgba(0, 0, 0, 0.25)), linear-gradient(left top, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0) 50%, rgba(255, 255, 255, 0));
 }
 
-.fc-calendar .fc-row > div > div {
+.msd-container .fc-calendar .fc-row > div > div {
 	margin-top: 35px;
 }
 
-.fc-calendar .fc-row > div > div a,
-.fc-calendar .fc-row > div > div span {
+.msd-container .fc-calendar .fc-row > div > div a,
+.msd-container .fc-calendar .fc-row > div > div span {
 	color: rgba(255,255,255,0.7);
 	font-size: 12px;
 	text-transform: uppercase;
@@ -268,7 +266,7 @@ body {
 	background: rgba(255,255,255,0.1);
 }
 
-.no-touch .fc-calendar .fc-row > div > div a:hover {
+.msd-container .no-touch .fc-calendar .fc-row > div > div a:hover {
 	background: rgba(255,255,255,0.3);
 }
 
