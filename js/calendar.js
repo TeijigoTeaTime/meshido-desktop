@@ -28,6 +28,57 @@ $(document).ready(function () {
 			fillEmpty : false
 		});
 	});
-	console.log('display-calendar');
+
+	/**
+	 * ランチ|ディナーへの参加ボタンを押した時のEvent
+	 */
+	$(document).on('click', '.msd-js-join-lunch, .msd-js-join-dinner', function() {
+		var $this = $(this);
+
+		var type = '';
+		if ($this.hasClass('msd-js-join-lunch')) {
+			type = 'lunch';
+		} else if ($this.hasClass('msd-js-join-dinner')) {
+			type = 'dinner';
+		}
+
+		var $event = $this.closest('.msd-js-event');
+		var split = $event.attr('id').split('-');
+		var year = split[2];
+		var month = split[3];
+		var day = split[4];
+
+		joinEvent(type, year, month, day).then(function(event) {
+			if (event.isFixed) {
+				alert('すでに募集は締め切られました。');
+				return;
+			}
+
+			// TODO: hasJoined の場合、ボタンを非活性化
+			// TODO: !hasJoined の場合、ボタンを活性化
+			$event.find('.msd-js-event-people').text(event.participantCount);
+		});
+
+	});
+
+	/**
+	 * イベントに参加登録（or解除）する
+	 *
+	 * @param {String} type イベント種別 (lunch|dinner)
+	 * @param {Number} year 年
+	 * @param {Number} month 月
+	 * @param {Number} day 日
+	 * @returns {Promise}
+	 */
+	function joinEvent(type, year, month, day) {
+		// TODO: サーバから取得する
+		var deferred = $.Deferred();
+		deferred.resolve({
+			"hasJoined": true,
+			"isFixed": true,
+			"participantCount": 3
+		});
+		return deferred.promise();
+	}
 });
 
