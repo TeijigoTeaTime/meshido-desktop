@@ -38,14 +38,11 @@ $(document).ready(function () {
 		// TODO: calendarJson から各日付に表示するHTMLを作る
 
 		var events = {
-			//'12-01-2015': [{content : '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="Lunch" onclick="">&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="Dinner" onclick="">'
-			//	, repeat: 'INTERVAL', allDay: true, endDate: '12-31-2100'}]
 		};
 		var t = new Date();
 		for (var i = 0 ; i < 31 ; i++) {
-		//var i = 1;
-			var test = ((t.getMonth() + 1) < 10 ? '0' + (t.getMonth() + 1) : (t.getMonth() + 1)) + '-' + (t.getDate() + i < 10 ? '0' + t.getDate() + i : t.getDate() + i) + '-' +t.getFullYear();
-			events[test] = [{content: '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="Lunch" onclick="">&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="Dinner" onclick="">', allDay: true}];
+			var date = ((t.getMonth() + 1) < 10 ? '0' + (t.getMonth() + 1) : (t.getMonth() + 1)) + '-' + (t.getDate() + i < 10 ? '0' + t.getDate() + i : t.getDate() + i) + '-' +t.getFullYear();
+			events[date] = [{content: '<div id="msd-lunch-'+date+'" class="msd-js-lunch"><button class="msd-js-join-lunch">昼</button><div class="msd-js-people-lunch"></div></div><div id="msd-dinner-'+date+'" class="msd-js-dinner"><button class="msd-js-join-dinner">夜</button><div class="msd-js-people-dinner"></div></div>', allDay: true}];
 			//events[test] = [{content: 'test' + i, allDay: true}];
 		}
 		//	Creation of today event
