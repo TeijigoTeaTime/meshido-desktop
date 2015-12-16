@@ -164,7 +164,6 @@ body {
 
 .msd-container .fc-calendar .fc-row > div > .fc-date {
 	color: rgba(255,255,255,0.9);
-	text-shadow: none;
 	font-size: 26px;
 	font-weight: 300;
 	bottom: auto;
