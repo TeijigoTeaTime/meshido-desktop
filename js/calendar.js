@@ -24,10 +24,97 @@ $(document).ready(function () {
 		});
 		$( '#calendar' ).calendario({
 			checkUpdate : false,
-				caldata : events,
+				caldata : buildCalData(fetchCalendar(2015, 12)),
 			fillEmpty : false
 		});
 	});
+
+	/**
+	 * Calendarioに与えるcaldataを生成する
+	 *
+	 * @param {Object} calendarJson カレンダーのJSON (fetchCalendarの戻り値)
+	 */
+	function buildCalData(calendarJson) {
+		// TODO: calendarJson から各日付に表示するHTMLを作る
+
+		var events = {
+			'12-01-2015': [{content : '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="Lunch" onclick="">&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="Dinner" onclick="">'
+				, repeat: 'INTERVAL', allDay: true, endDate: '12-31-2100'}]
+		};
+		//var t = new Date();
+		//	Creation of today event
+		//	var today = ((t.getMonth() + 1) < 10 ? '0' + (t.getMonth() + 1) : (t.getMonth() + 1)) + '-' + (t.getDate() < 10 ? '0' + t.getDate() : t.getDate()) + '-' + t.getFullYear();
+		//	events[today] = [{content: 'TODAY', allDay: true}];
+
+		return events;
+	}
+
+	/**
+	 * サーバからカレンダーを取得する
+	 *
+	 * @param {Number} year 年
+	 * @param {Number} month 月
+	 */
+	function fetchCalendar(year, month) {
+		// TODO: サーバから取得する
+		// サーバからのレスポンスのフォーマットは
+		// https://github.com/TeijigoTeaTime/meshido-backend#カレンダー-get-groupgroupcalendar
+		// を参照
+		return {
+			"v": "0.1",
+			// 一ヶ月分のカレンダーと各イベントの状態
+			"days": [
+				{
+					"dayOfMonth": (new Date().getDay()),    // 日にち
+					"weekday": "TUE",   // 曜日
+					"events": {
+						"lunch": {
+							"hasJoined": true,   // 参加済みか
+							"isFixed": true,     // 確定済みのイベントか
+							"participantCount": 3,  // 参加者数
+							"_links": {}
+						},
+						"dinner": {
+							"hasJoined": false,
+							"isFixed": true,
+							"participantCount": 4,
+							"_links": {}
+						}
+					}
+				},
+				{
+					"dayOfMonth": (new Date().getDay() + 1),    // 日にち
+					"weekday": "WED",   // 曜日
+					"events": {
+						"lunch": {
+							"hasJoined": false,   // 参加済みか
+							"isFixed": false,     // 確定済みのイベントか
+							"participantCount": 5,  // 参加者数
+							"_links": {}
+						},
+						"dinner": {
+							"hasJoined": true,
+							"isFixed": false,
+							"participantCount": 6,
+							"_links": {}
+						}
+					}
+				}
+			],
+			"_links": {
+				"self" : {
+					"href": "/group/group12345/calendar/year/2015/month/12",
+				},
+				"next" : {
+					"href": "/group/group12345/calendar/year/2016/month/1",
+				},
+				"prev" : {
+					"href": "/group/group12345/calendar/year/2015/month/11",
+				}
+			},
+			"_embeded": {}
+		};
+	}
 	console.log('display-calendar');
 });
 
