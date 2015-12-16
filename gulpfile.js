@@ -46,7 +46,8 @@ gulp.task('csslint', function () {
 		.pipe(csslint({
 			// FIXME: 警告が多すぎるため、一旦無視
 			'fallback-colors': false,
-			'qualified-headings': false
+			'qualified-headings': false,
+			'unique-headings': false
 		}))
 		.pipe(csslint.reporter())
 		.pipe(csslint.reporter('fail'));
