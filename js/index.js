@@ -1,9 +1,9 @@
 'use strict';
 
 $(document).ready(function () {
-	var user = $$.storage.getItem('user');
+	var token = $$.storage.getItem('token');
 
-	if (user) {
+	if (token) {
 		// ログイン済みの場合
 		// カレンダーを表示
 		$(document).trigger('display-calendar');
