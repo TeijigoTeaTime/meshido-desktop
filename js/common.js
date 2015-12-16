@@ -54,7 +54,7 @@ window.$$ = {
 	 *
 	 * @param {String} msg メッセージ
 	 */
-	$$.alert = function(msg) {
+	$$.alert = function (msg) {
 		var $modal = $('#msd-alert-modal');
 		$modal.find('.modal-content > p').text(msg);
 
