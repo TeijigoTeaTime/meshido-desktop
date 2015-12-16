@@ -65,8 +65,8 @@ $(document).ready(function () {
 			// 一ヶ月分のカレンダーと各イベントの状態
 			"days": [
 				{
-					"dayOfMonth": (new Date().getDay()),    // 日にち
-					"weekday": "TUE",   // 曜日
+					"dayOfMonth": (new Date().getDate()),    // 日にち
+					"weekday": ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'][new Date().getDay()],   // 曜日
 					"events": {
 						"lunch": {
 							"hasJoined": true,   // 参加済みか
@@ -83,8 +83,8 @@ $(document).ready(function () {
 					}
 				},
 				{
-					"dayOfMonth": (new Date().getDay() + 1),    // 日にち
-					"weekday": "WED",   // 曜日
+					"dayOfMonth": (new Date().getDate() + 1),    // 日にち
+					"weekday": ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'][new Date().getDay() + 1],   // 曜日
 					"events": {
 						"lunch": {
 							"hasJoined": false,   // 参加済みか
