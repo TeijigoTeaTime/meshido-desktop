@@ -23,8 +23,9 @@ $(document).ready(function () {
 		var email = $('#login-email').val();
 		var name = $('#login-name').val();
 
-		login(email, name).then(function (token) {
+		login(email, name).then(function (token, group) {
 			// ストレージにユーザ情報を保存
+			$$.storage.setItem('group', group);
 			$$.storage.setItem('token', token);
 			$$.storage.setItem('user', {
 				email: email,
@@ -60,7 +61,7 @@ $(document).ready(function () {
 				name: name
 			}
 		}).done(function (res) {
-			deferred.resolve(res.token);
+			deferred.resolve(res.user.token, res.user.group);
 		}).fail(function () {
 			deferred.reject();
 		});
