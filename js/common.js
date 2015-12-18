@@ -32,14 +32,13 @@ window.$$ = {
 	 * @return {Promise} jqXHRオブジェクト
 	 */
 	$$.ajax = function (ajaxOpt) {
-		var user = $$.storage.getItem('user');
-		var userToken = user ? user.token : '';
+		var token = $$.storage.getItem('token');
 
 		var opt = $.extend({}, ajaxOpt, {
 			headers: {
 				'Content-Type': 'application/json; charset=UTF-8',
 				'X-Meshido-ApiVerion': $$.apiVersion,
-				'X-Meshido-UserToken': userToken
+				'X-Meshido-UserToken': token
 			},
 			dataType: 'json'
 		});
@@ -48,6 +47,22 @@ window.$$ = {
 		opt.data = JSON.stringify(opt.data);
 
 		return ajax(opt);
+	};
+
+	/**
+	 * Alertダイアログを表示する
+	 *
+	 * @param {String} msg メッセージ
+	 */
+	$$.alert = function (msg) {
+		var $modal = $('#msd-alert-modal');
+		$modal.find('.modal-content > p').text(msg);
+
+		$modal.openModal({
+			dismissible: false,
+			opacity: '.2',
+			'in_duration': 300
+		});
 	};
 
 	/**
