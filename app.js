@@ -19,8 +19,8 @@ function onClosed() {
 
 function createMainWindow() {
 	const win = new electron.BrowserWindow({
-		width: 700,
-		height: 500,
+		width: 880,
+		height: 550,
 		'node-integration': false
 	});
 
