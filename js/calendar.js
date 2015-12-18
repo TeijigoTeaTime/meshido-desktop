@@ -38,11 +38,10 @@ $(document).ready(function () {
 		$('#custom-month').html($calendar.calendario('getMonthName'));
 	}
 
-
 	/**
 	 * ランチ|ディナーへの参加ボタンを押した時のEvent
 	 */
-	$(document).on('click', '.msd-js-join-lunch, .msd-js-join-dinner', function() {
+	$(document).on('click', '.msd-js-join-lunch, .msd-js-join-dinner', function () {
 		var $this = $(this);
 
 		if ($this.hasClass('msd-js-event-fixed')) {
@@ -58,7 +57,7 @@ $(document).ready(function () {
 		}
 
 		var $event = $this.closest('.msd-js-event');
-		// id="msd-event-{年}-{月}-{日}"
+		// id='msd-event-{年}-{月}-{日}'
 		var split = $event.attr('id').split('-');
 		var year = split[2];
 		var month = split[3];
@@ -66,7 +65,7 @@ $(document).ready(function () {
 
 		var joinOrCancelEvent = $this.hasClass('msd-js-event-joined') ? cancelEvent : joinEvent;
 
-		joinOrCancelEvent(type, year, month, day).then(function(event) {
+		joinOrCancelEvent(type, year, month, day).then(function (event) {
 			if (event.isFixed) {
 				$$.alert('すでに募集は締め切られています。');
 				// TODO: ボタンを非活性化
@@ -88,16 +87,16 @@ $(document).ready(function () {
 	 * @returns {Function} Promiseを返す関数
 	 */
 	function joinEvent(type, year, month, day) {
-		return function(type, year, month, day) {
+		return function (type, year, month, day) {
 			// TODO: サーバから取得する
 			var deferred = $.Deferred();
 			deferred.resolve({
-				"hasJoined": true,
-				"isFixed": false,
-				"participantCount": 3
+				'hasJoined': true,
+				'isFixed': false,
+				'participantCount': 3
 			});
 			return deferred.promise();
-		}
+		};
 	}
 
 	/**
@@ -110,16 +109,16 @@ $(document).ready(function () {
 	 * @returns {Function}  Promiseを返す関数
 	 */
 	function cancelEvent(type, year, month, day) {
-		return function(type, year, month, day) {
+		return function (type, year, month, day) {
 			// TODO: サーバから取得する
 			var deferred = $.Deferred();
 			deferred.resolve({
-				"hasJoined": false,
-				"isFixed": false,
-				"participantCount": 2
+				'hasJoined': false,
+				'isFixed': false,
+				'participantCount': 2
 			});
 			return deferred.promise();
-		}
+		};
 	}
 });
 
