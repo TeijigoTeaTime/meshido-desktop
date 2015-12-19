@@ -48,9 +48,35 @@ $(document).ready(function () {
 		var events = {
 		};
 		var t = new Date();
-		for (var i = 0 ; i < 31 ; i++) {
+		for (var i = 0 ; i < calendarJson.days.length ; i++) {
 			var date = ((t.getMonth() + 1) < 10 ? '0' + (t.getMonth() + 1) : (t.getMonth() + 1)) + '-' + (t.getDate() + i < 10 ? '0' + t.getDate() + i : t.getDate() + i) + '-' +t.getFullYear();
-			events[date] = [{content: '<div id="msd-lunch-'+date+'" class="msd-js-event"><button class="msd-js-join-lunch">昼</button><div class="msd-js-event-people">' + i + '</div></div><div id="msd-dinner-'+date+'" class="msd-js-event"><button class="msd-js-join-dinner">夜</button><div class="msd-js-event-people">' + i + '</div></div>', allDay: true}];
+			var lunchMember = calendarJson.days[i].events.lunch.participantCount;
+			var dinnerMember = calendarJson.days[i].events.dinner.participantCount;
+			var content = '<div id="msd-lunch-'+date+'" class="msd-js-event">';
+			// 昼の情報
+			if (calendarJson.days[i].events.lunch.isFixed == true && calendarJson.days[i].events.lunch.hasJoined == true) {
+				content += '<button class="msd-js-join-lunch msd-js-event-fixed msd-js-event-joined msd-event-fixed msd-event-joined">昼</button>';
+			} else if (calendarJson.days[i].events.lunch.isFixed == true) {
+				content +='<button class="msd-js-join-lunch msd-js-event-fixed msd-event-fixed">昼</button>';
+			} else if (calendarJson.days[i].events.lunch.hasJoined == true) {
+				content +='<button class="msd-js-join-lunch msd-js-event-joined msd-event-joined">昼</button>';
+			} else {
+				content += '<button class="msd-js-join-lunch">昼</button>';
+			}
+			content += '<div class="msd-js-event-people">' + lunchMember + '</div></div>';
+			content += '<div id="msd-dinner-'+date+'" class="msd-js-event">';
+			// 夜の情報
+			if (calendarJson.days[i].events.dinner.isFixed == true && calendarJson.days[i].events.dinner.hasJoined == true) {
+				content += '<button class="msd-js-join-dinner msd-js-event-fixed msd-js-event-joined msd-event-fixed msd-event-joined">夜</button>';
+			} else if (calendarJson.days[i].events.dinner.isFixed == true) {
+				content +='<button class="msd-js-join-dinner msd-js-event-fixed msd-event-fixed">夜</button>';
+			} else if (calendarJson.days[i].events.dinner.hasJoined == true) {
+				content +='<button class="msd-js-join-dinner msd-js-event-joined msd-event-joined">夜</button>';
+			} else {
+				content += '<button class="msd-js-join-dinner">夜</button>';
+			}
+			content += '<div class="msd-js-event-people">' + dinnerMember + '</div></div>';
+			events[date] = [{content: content, allDay: true}];
 			//events[test] = [{content: 'test' + i, allDay: true}];
 		}
 		//	Creation of today event
