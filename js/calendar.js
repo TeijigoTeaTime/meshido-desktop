@@ -7,10 +7,21 @@ $(document).ready(function () {
 	 * カレンダーを表示するイベント
 	 */
 	$(document).on('display-calendar', function () {
-		$calendar.calendario({
-			checkUpdate : false,
-				caldata : buildCalData(fetchCalendar(2015, 12)),
-			fillEmpty : false
+		var now = new Date();
+		var year = now.getFullYear();
+		var month = now.getMonth() + 1;
+
+		$$.ajax({
+			url: '/group/:group/calendar/year/' + year + '/month/' + month
+		}).done(function (res) {
+			// カレンダーの初期化
+			$calendar.calendario({
+				checkUpdate: false,
+				caldata: buildCalData(res.days),
+				fillEmpty: false
+			});
+		}).fail(function () {
+			$$.alert('カレンダーの取得に失敗しました。');
 		});
 	});
 
@@ -37,6 +48,7 @@ $(document).ready(function () {
 		$('#custom-year').html($calendar.calendario('getYear'));
 		$('#custom-month').html($calendar.calendario('getMonthName'));
 	}
+
 	/**
 	 * Calendarioに与えるcaldataを生成する
 	 *
@@ -59,73 +71,5 @@ $(document).ready(function () {
 
 		return events;
 	}
-
-	/**
-	 * サーバからカレンダーを取得する
-	 *
-	 * @param {Number} year 年
-	 * @param {Number} month 月
-	 */
-	function fetchCalendar(year, month) {
-		// TODO: サーバから取得する
-		// サーバからのレスポンスのフォーマットは
-		// https://github.com/TeijigoTeaTime/meshido-backend#カレンダー-get-groupgroupcalendar
-		// を参照
-		return {
-			"v": "0.1",
-			// 一ヶ月分のカレンダーと各イベントの状態
-			"days": [
-				{
-					"dayOfMonth": (new Date().getDate()),    // 日にち
-					"weekday": ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'][new Date().getDay()],   // 曜日
-					"events": {
-						"lunch": {
-							"hasJoined": true,   // 参加済みか
-							"isFixed": true,     // 確定済みのイベントか
-							"participantCount": 3,  // 参加者数
-							"_links": {}
-						},
-						"dinner": {
-							"hasJoined": false,
-							"isFixed": true,
-							"participantCount": 4,
-							"_links": {}
-						}
-					}
-				},
-				{
-					"dayOfMonth": (new Date().getDate() + 1),    // 日にち
-					"weekday": ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'][new Date().getDay() + 1],   // 曜日
-					"events": {
-						"lunch": {
-							"hasJoined": false,   // 参加済みか
-							"isFixed": false,     // 確定済みのイベントか
-							"participantCount": 5,  // 参加者数
-							"_links": {}
-						},
-						"dinner": {
-							"hasJoined": true,
-							"isFixed": false,
-							"participantCount": 6,
-							"_links": {}
-						}
-					}
-				}
-			],
-			"_links": {
-				"self" : {
-					"href": "/group/group12345/calendar/year/2015/month/12",
-				},
-				"next" : {
-					"href": "/group/group12345/calendar/year/2016/month/1",
-				},
-				"prev" : {
-					"href": "/group/group12345/calendar/year/2015/month/11",
-				}
-			},
-			"_embeded": {}
-		};
-	}
-	console.log('display-calendar');
 });
 
