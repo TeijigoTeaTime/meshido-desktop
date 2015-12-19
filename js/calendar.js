@@ -1,6 +1,8 @@
 'use strict';
 
 $(document).ready(function () {
+	var $calendar = $('#calendar');
+
 	/**
 	 * カレンダーを表示するイベント
 	 */

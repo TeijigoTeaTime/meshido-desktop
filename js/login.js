@@ -23,17 +23,22 @@ $(document).ready(function () {
 		var email = $('#login-email').val();
 		var name = $('#login-name').val();
 
-		login(email, name).then(function (user) {
-			console.log(user);
-
+		login(email, name).then(function (token, group) {
 			// ストレージにユーザ情報を保存
-			$$.storage.setItem('user', user);
+			$$.storage.setItem('group', group);
+			$$.storage.setItem('token', token);
+			$$.storage.setItem('user', {
+				email: email,
+				name: name
+			});
 
 			// ログインダイアログを閉じる
 			$loginModal.closeModal();
 
 			// カレンダーを表示する
 			$(document).trigger('display-calendar');
+		}, function () {
+			$$.alert('メールアドレス、または、名前が不正です。');
 		});
 	});
 
@@ -45,13 +50,22 @@ $(document).ready(function () {
 	 * @returns {Promise}
 	 */
 	function login(email, name) {
-		// TODO: サーバにリクエストを投げる
-		var defer = $.Deferred();
-		defer.resolve({
-			email: email,
-			name: name,
-			token: 'api-token'
+		var deferred = $.Deferred();
+
+		$$.ajax({
+			url: '/login',
+			method: 'POST',
+			data: {
+				group: 'test1',
+				email: email,
+				name: name
+			}
+		}).done(function (res) {
+			deferred.resolve(res.user.token, res.user.group);
+		}).fail(function () {
+			deferred.reject();
 		});
-		return defer.promise();
+
+		return deferred.promise();
 	}
 });
