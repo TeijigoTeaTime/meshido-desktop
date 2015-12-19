@@ -7,7 +7,7 @@ $(document).ready(function () {
 	 * カレンダーを表示するイベント
 	 */
 	$(document).on('display-calendar', function () {
-		$( '#calendar' ).calendario({
+		$calendar.calendario({
 			checkUpdate : false,
 				caldata : buildCalData(fetchCalendar(2015, 12)),
 			fillEmpty : false
