@@ -1,7 +1,7 @@
 'use strict';
 
 window.$$ = {
-	apiHost: 'http://meshido.herokuapp.com',
+	apiHost: 'http://localhost:3000',
 	apiVersion: '1.0'
 };
 
