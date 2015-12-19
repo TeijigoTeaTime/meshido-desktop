@@ -31,6 +31,13 @@ $(document).ready(function () {
 	});
 
 	/**
+	 * 現在年月の表示を更新する
+	 */
+	function updateYearMonth() {
+		$('#custom-year').html($calendar.calendario('getYear'));
+		$('#custom-month').html($calendar.calendario('getMonthName'));
+	}
+	/**
 	 * Calendarioに与えるcaldataを生成する
 	 *
 	 * @param {Object} calendarJson カレンダーのJSON (fetchCalendarの戻り値)
