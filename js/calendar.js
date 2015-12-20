@@ -7,19 +7,21 @@ $(document).ready(function () {
 	 * カレンダーを表示するイベント
 	 */
 	$(document).on('display-calendar', function () {
-		var now = new Date();
-		var year = now.getFullYear();
-		var month = now.getMonth() + 1;
+		// カレンダーの初期化
+		$calendar.calendario({
+			checkUpdate: false,
+			fillEmpty: false,
+			caldata: {}
+		});
+
+		var today = new Date();
+		var year = today.getFullYear();
+		var month = today.getMonth() + 1;
 
 		$$.ajax({
 			url: '/group/:group/calendar/year/' + year + '/month/' + month
 		}).done(function (res) {
-			// カレンダーの初期化
-			$calendar.calendario({
-				checkUpdate: false,
-				fillEmpty: false,
-				caldata: {}
-			});
+			// イベント情報（ボタン、人数）を描画
 			$calendar.calendario('setData',  buildCalData(year, month, res.days));
 		}).fail(function () {
 			$$.alert('カレンダーの取得に失敗しました。');
