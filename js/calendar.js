@@ -10,7 +10,6 @@ $(document).ready(function () {
 		var now = new Date();
 		var year = now.getFullYear();
 		var month = now.getMonth() + 1;
-		var day = now.getDate();
 
 		$$.ajax({
 			url: '/group/:group/calendar/year/' + year + '/month/' + month
@@ -18,7 +17,7 @@ $(document).ready(function () {
 			// カレンダーの初期化
 			$calendar.calendario({
 				checkUpdate: false,
-				caldata: buildCalData(res.days, year, month, day),
+				caldata: buildCalData(year, month, res.days),
 				fillEmpty: false
 			});
 		}).fail(function () {
@@ -53,22 +52,26 @@ $(document).ready(function () {
 	/**
 	 * Calendarioに与えるcaldataを生成する
 	 *
-	 * @param {Array} days 1ヶ月の日付の配列
-	 * @param {Number} year 年
-	 * @param {Number} month 月
-	 * @param {Number} day 日
+	 * @param {Number} calYear カレンダーの年
+	 * @param {Number} calMonth カレンダーの月
+	 * @param {Array} calDays カレンダーの日の配列
 	 */
-	function buildCalData(days, year, month, day) {
+	function buildCalData(calYear, calMonth, calDays) {
 		var events = {};
+		var today = new Date();
 
-		for (var i = 0; i < days.length; i++) {
-			var calDay = days[i];
-			if (calDay.dayOfMonth < day) {
-				continue;
+		for (var i = 0; i < calDays.length; i++) {
+			var calDay = calDays[i];
+
+			if (calYear <= today.getFullYear() && calMonth <= today.getMonth() + 1) {
+				if (calDay.dayOfMonth < today.getDate()) {
+					// カレンダーが当月以前の場合、前日より古いイベントは表示しない
+					continue;
+				}
 			}
 
-			var date = [month, calDay.dayOfMonth, year].join('-');
-			var msdDate = [year, month, calDay.dayOfMonth].join('-');
+			var date = [calMonth, calDay.dayOfMonth, calYear].join('-');
+			var msdDate = [calYear, calMonth, calDay.dayOfMonth].join('-');
 			var lunchMember = calDay.lunch.participantCount;
 			var dinnerMember = calDay.dinner.participantCount;
 			var content = '<div id="msd-lunch-' + msdDate + '" class="msd-js-event msd-event';
