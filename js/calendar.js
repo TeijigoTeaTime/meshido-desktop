@@ -94,9 +94,10 @@ $(document).ready(function () {
 
 		// 参加済→cancel
 		// 未参加→join
-		var joinOrCancelEvent = $btn.hasClass('msd-js-event-joined') ? cancelEvent : joinEvent;
+		var joinOrCancelEvent = $btn.hasClass('msd-js-event-joined')
+			? cancelEvent(type, year, month, day) : joinEvent(type, year, month, day);
 
-		joinOrCancelEvent(type, year, month, day).then(function (event) {
+		joinOrCancelEvent.then(function (event) {
 			if (event.isFixed) {
 				$event.addClass('msd-js-event-fixed').addClass('msd-event-fixed');
 				$$.alert('すでに募集は締め切られています。');
@@ -120,19 +121,27 @@ $(document).ready(function () {
 	 * @param {Number} year 年
 	 * @param {Number} month 月
 	 * @param {Number} day 日
-	 * @returns {Function} Promiseを返す関数
+	 * @returns {Promise}
 	 */
 	function joinEvent(type, year, month, day) {
-		return function (type, year, month, day) {
-			// TODO: サーバから取得する
-			var deferred = $.Deferred();
-			deferred.resolve({
-				'hasJoined': true,
-				'isFixed': false,
-				'participantCount': 3
-			});
-			return deferred.promise();
-		};
+		var deferred = $.Deferred();
+
+		$$.ajax({
+			url: '/group/:group/event/join',
+			method: 'POST',
+			data: {
+				eventType: type,
+				year: year,
+				month: month,
+				day: day
+			}
+		}).done(function(res) {
+			deferred.resolve(res.days[0][type]);
+		}).fail(function() {
+			deferred.reject();
+		});
+
+		return deferred.promise();
 	}
 
 	/**
@@ -142,19 +151,27 @@ $(document).ready(function () {
 	 * @param {Number} year 年
 	 * @param {Number} month 月
 	 * @param {Number} day 日
-	 * @returns {Function}  Promiseを返す関数
+	 * @returns {Promise}
 	 */
 	function cancelEvent(type, year, month, day) {
-		return function (type, year, month, day) {
-			// TODO: サーバから取得する
-			var deferred = $.Deferred();
-			deferred.resolve({
-				'hasJoined': false,
-				'isFixed': false,
-				'participantCount': 2
-			});
-			return deferred.promise();
-		};
+		var deferred = $.Deferred();
+
+		$$.ajax({
+			url: '/group/:group/event/cancel',
+			method: 'POST',
+			data: {
+				eventType: type,
+				year: year,
+				month: month,
+				day: day
+			}
+		}).done(function(res) {
+			deferred.resolve(res.days[0][type]);
+		}).fail(function() {
+			deferred.reject();
+		});
+
+		return deferred.promise();
 	}
 });
 
