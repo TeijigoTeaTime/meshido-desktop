@@ -75,38 +75,40 @@ $(document).ready(function () {
 	/**
 	 * ランチ|ディナーへの参加ボタンを押した時のEvent
 	 */
-	$(document).on('click', '.msd-js-join-lunch, .msd-js-join-dinner', function () {
-		var $this = $(this);
+	$(document).on('click', '.msd-js-join-event', function () {
+		var $btn = $(this);
 
-		if ($this.hasClass('msd-js-event-fixed')) {
-			// 確定済みの場合は何もしない
-			return;
-		}
-
-		var type = '';
-		if ($this.hasClass('msd-js-join-lunch')) {
-			type = 'lunch';
-		} else if ($this.hasClass('msd-js-join-dinner')) {
-			type = 'dinner';
-		}
-
-		var $event = $this.closest('.msd-js-event');
-		// id='msd-event-{年}-{月}-{日}'
+		var $event = $btn.closest('.msd-js-event');
+		// id='msd-{lunch|dinner}-{年}-{月}-{日}'
 		var split = $event.attr('id').split('-');
+		var type = split[1];
 		var year = split[2];
 		var month = split[3];
 		var day = split[4];
 
-		var joinOrCancelEvent = $this.hasClass('msd-js-event-joined') ? cancelEvent : joinEvent;
+		if ($btn.hasClass('msd-js-event-fixed')) {
+			// 確定済みの場合は何もしない
+			console.log(type + ' at ' + [year,month, day].join('-') + ' is fixed.');
+			return;
+		}
+
+		// 参加済→cancel
+		// 未参加→join
+		var joinOrCancelEvent = $btn.hasClass('msd-js-event-joined') ? cancelEvent : joinEvent;
 
 		joinOrCancelEvent(type, year, month, day).then(function (event) {
 			if (event.isFixed) {
+				$event.addClass('msd-js-event-fixed').addClass('msd-event-fixed');
 				$$.alert('すでに募集は締め切られています。');
-				// TODO: ボタンを非活性化
 				return;
 			}
 
-			// TODO: hasJoined | !hasJoined に応じてボタンのスタイルを変える
+			if (event.hasJoined) {
+				$event.addClass('msd-js-event-joined').addClass('msd-event-joined');
+			} else {
+				$event.removeClass('msd-js-event-joined').removeClass('msd-event-joined');
+			}
+
 			$event.find('.msd-js-event-people').text(event.participantCount);
 		});
 	});
