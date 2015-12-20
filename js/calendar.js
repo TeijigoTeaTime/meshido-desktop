@@ -61,7 +61,7 @@ $(document).ready(function () {
 	function buildCalData(days, year, month, day) {
 		var events = {};
 
-		for (var i = 0 ; i < days.length ; i++) {
+		for (var i = 0; i < days.length; i++) {
 			var calDay = days[i];
 			if (calDay.dayOfMonth < day) {
 				continue;
@@ -71,7 +71,7 @@ $(document).ready(function () {
 			var msdDate = [year, month, calDay.dayOfMonth].join('-');
 			var lunchMember = calDay.lunch.participantCount;
 			var dinnerMember = calDay.dinner.participantCount;
-			var content = '<div id="msd-lunch-'+msdDate+'" class="msd-js-event msd-event';
+			var content = '<div id="msd-lunch-' + msdDate + '" class="msd-js-event msd-event';
 
 			// 昼の情報
 			if (calDay.lunch.isFixed && calDay.lunch.hasJoined) {
@@ -85,7 +85,7 @@ $(document).ready(function () {
 			}
 			content += '<button class="msd-js-join-event msd-btn">昼</button>';
 			content += '<div class="msd-js-event-people">' + lunchMember + '</div></div>';
-			content += '<div id="msd-dinner-'+msdDate+'" class="msd-js-event msd-event';
+			content += '<div id="msd-dinner-' + msdDate + '" class="msd-js-event msd-event';
 			// 夜の情報
 			if (calDay.dinner.isFixed && calDay.dinner.hasJoined) {
 				content += ' msd-js-event-fixed msd-js-event-joined msd-event-fixed msd-event-joined">';
@@ -120,7 +120,7 @@ $(document).ready(function () {
 
 		if ($event.hasClass('msd-js-event-fixed')) {
 			// 確定済みの場合は何もしない
-			console.log(type + ' at ' + [year,month, day].join('-') + ' is fixed.');
+			console.log(type + ' at ' + [year, month, day].join('-') + ' is fixed.');
 			return;
 		}
 
@@ -167,9 +167,9 @@ $(document).ready(function () {
 				month: month,
 				day: day
 			}
-		}).done(function(res) {
+		}).done(function (res) {
 			deferred.resolve(res.days[0][type]);
-		}).fail(function() {
+		}).fail(function () {
 			deferred.reject();
 		});
 
@@ -197,9 +197,9 @@ $(document).ready(function () {
 				month: month,
 				day: day
 			}
-		}).done(function(res) {
+		}).done(function (res) {
 			deferred.resolve(res.days[0][type]);
-		}).fail(function() {
+		}).fail(function () {
 			deferred.reject();
 		});
 
