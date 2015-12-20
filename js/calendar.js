@@ -22,7 +22,7 @@ $(document).ready(function () {
 			url: '/group/:group/calendar/year/' + year + '/month/' + month
 		}).done(function (res) {
 			// イベント情報（ボタン、人数）を描画
-			$calendar.calendario('setData',  buildCalData(year, month, res.days));
+			$calendar.calendario('setData', buildCalData(year, month, res.days));
 		}).fail(function () {
 			$$.alert('カレンダーの取得に失敗しました。');
 		});
