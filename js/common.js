@@ -2,7 +2,8 @@
 
 window.$$ = {
 	apiHost: 'http://localhost:3000',
-	apiVersion: '1.0'
+	apiVersion: '1.0',
+	userGroup: 'test1'
 };
 
 (function ($, $$) {
@@ -43,7 +44,7 @@ window.$$ = {
 			dataType: 'json'
 		});
 
-		opt.url = $$.apiHost + opt.url;
+		opt.url = $$.apiHost + opt.url.replace(':group', window.$$.userGroup);
 		opt.data = JSON.stringify(opt.data);
 
 		return ajax(opt);

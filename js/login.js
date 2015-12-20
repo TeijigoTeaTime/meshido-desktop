@@ -56,7 +56,7 @@ $(document).ready(function () {
 			url: '/login',
 			method: 'POST',
 			data: {
-				group: 'test1',
+				group: window.$$.userGroup,
 				email: email,
 				name: name
 			}
