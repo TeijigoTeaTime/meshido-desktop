@@ -10,6 +10,7 @@ $(document).ready(function () {
 		var now = new Date();
 		var year = now.getFullYear();
 		var month = now.getMonth() + 1;
+		var day = now.getDate();
 
 		$$.ajax({
 			url: '/group/:group/calendar/year/' + year + '/month/' + month
@@ -17,7 +18,7 @@ $(document).ready(function () {
 			// カレンダーの初期化
 			$calendar.calendario({
 				checkUpdate: false,
-				caldata: buildCalData(res.days),
+				caldata: buildCalData(res.days, year, month, day),
 				fillEmpty: false
 			});
 		}).fail(function () {
@@ -52,27 +53,32 @@ $(document).ready(function () {
 	/**
 	 * Calendarioに与えるcaldataを生成する
 	 *
-	 * @param {Object} calendarJson カレンダーのJSON (fetchCalendarの戻り値)
+	 * @param {Array} days 1ヶ月の日付の配列
+	 * @param {Number} year 年
+	 * @param {Number} month 月
+	 * @param {Number} day 日
 	 */
-	function buildCalData(calendarJson) {
-		// TODO: calendarJson から各日付に表示するHTMLを作る
+	function buildCalData(days, year, month, day) {
+		var events = {};
 
-		var events = {
-		};
-		var t = new Date();
-		for (var i = 0 ; i < calendarJson.days.length ; i++) {
-			var date = ((t.getMonth() + 1) < 10 ? '0' + (t.getMonth() + 1) : (t.getMonth() + 1)) + '-' + (t.getDate() + i < 10 ? '0' + t.getDate() + i : t.getDate() + i) + '-' +t.getFullYear();
-			var msdDate = t.getFullYear() + '-' +((t.getMonth() + 1) < 10 ? '0' + (t.getMonth() + 1) : (t.getMonth() + 1)) + '-' + (t.getDate() + i < 10 ? '0' + t.getDate() + i : t.getDate() + i);
-			var lunchMember = calendarJson.days[i].events.lunch.participantCount;
-			var dinnerMember = calendarJson.days[i].events.dinner.participantCount;
+		for (var i = 0 ; i < days.length ; i++) {
+			var calDay = days[i];
+			if (calDay.dayOfMonth < day) {
+				continue;
+			}
+
+			var date = [month, calDay.dayOfMonth, year].join('-');
+			var msdDate = [year, month, calDay.dayOfMonth].join('-');
+			var lunchMember = calDay.lunch.participantCount;
+			var dinnerMember = calDay.dinner.participantCount;
 			var content = '<div id="msd-lunch-'+msdDate+'" class="msd-js-event msd-event';
-			
+
 			// 昼の情報
-			if (calendarJson.days[i].events.lunch.isFixed && calendarJson.days[i].events.lunch.hasJoined) {
+			if (calDay.lunch.isFixed && calDay.lunch.hasJoined) {
 				content += ' msd-js-event-fixed msd-js-event-joined msd-event-fixed msd-event-joined">';
-			} else if (calendarJson.days[i].events.lunch.isFixed) {
+			} else if (calDay.lunch.isFixed) {
 				content += ' msd-js-event-fixed msd-event-fixed">';
-			} else if (calendarJson.days[i].events.lunch.hasJoined) {
+			} else if (calDay.lunch.hasJoined) {
 				content += ' msd-js-event-joined msd-event-joined">';
 			} else {
 				content += '">';
@@ -81,11 +87,11 @@ $(document).ready(function () {
 			content += '<div class="msd-js-event-people">' + lunchMember + '</div></div>';
 			content += '<div id="msd-dinner-'+msdDate+'" class="msd-js-event msd-event';
 			// 夜の情報
-			if (calendarJson.days[i].events.dinner.isFixed && calendarJson.days[i].events.dinner.hasJoined) {
+			if (calDay.dinner.isFixed && calDay.dinner.hasJoined) {
 				content += ' msd-js-event-fixed msd-js-event-joined msd-event-fixed msd-event-joined">';
-			} else if (calendarJson.days[i].events.dinner.isFixed) {
+			} else if (calDay.dinner.isFixed) {
 				content += ' msd-js-event-fixed msd-event-fixed">';
-			} else if (calendarJson.days[i].events.dinner.hasJoined) {
+			} else if (calDay.dinner.hasJoined) {
 				content += ' msd-js-event-joined msd-event-joined">';
 			} else {
 				content += '">';
@@ -93,11 +99,7 @@ $(document).ready(function () {
 			content += '<button class="msd-js-join-event msd-btn">夜</button>';
 			content += '<div class="msd-js-event-people">' + dinnerMember + '</div></div>';
 			events[date] = [{content: content, allDay: true}];
-			//events[test] = [{content: 'test' + i, allDay: true}];
 		}
-		//	Creation of today event
-		//	var today = ((t.getMonth() + 1) < 10 ? '0' + (t.getMonth() + 1) : (t.getMonth() + 1)) + '-' + (t.getDate() < 10 ? '0' + t.getDate() : t.getDate()) + '-' + t.getFullYear();
-		//	events[today] = [{content: 'TODAY', allDay: true}];
 
 		return events;
 	}
@@ -107,8 +109,8 @@ $(document).ready(function () {
 	 */
 	$(document).on('click', '.msd-js-join-event', function () {
 		var $btn = $(this);
-
 		var $event = $btn.closest('.msd-js-event');
+
 		// id='msd-{lunch|dinner}-{年}-{月}-{日}'
 		var split = $event.attr('id').split('-');
 		var type = split[1];
@@ -116,7 +118,7 @@ $(document).ready(function () {
 		var month = split[3];
 		var day = split[4];
 
-		if ($btn.hasClass('msd-js-event-fixed')) {
+		if ($event.hasClass('msd-js-event-fixed')) {
 			// 確定済みの場合は何もしない
 			console.log(type + ' at ' + [year,month, day].join('-') + ' is fixed.');
 			return;
@@ -124,7 +126,7 @@ $(document).ready(function () {
 
 		// 参加済→cancel
 		// 未参加→join
-		var joinOrCancelEvent = $btn.hasClass('msd-js-event-joined')
+		var joinOrCancelEvent = $event.hasClass('msd-js-event-joined')
 			? cancelEvent(type, year, month, day) : joinEvent(type, year, month, day);
 
 		joinOrCancelEvent.then(function (event) {
