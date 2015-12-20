@@ -44,6 +44,7 @@ gulp.task('htmlhint', function() {
 gulp.task('csslint', function () {
 	return gulp.src(['css/**/*.css', '!css/lib/**'])
 		.pipe(csslint({
+			'adjoining-classes': false,
 			// FIXME: 警告が多すぎるため、一旦無視
 			'fallback-colors': false,
 			'qualified-headings': false,
