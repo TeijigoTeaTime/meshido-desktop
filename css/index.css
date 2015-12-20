@@ -2,10 +2,9 @@ html,
 body {
 	padding: 0;
 	margin: 0;
-}
-
-body {
 	font-family: -apple-system, 'Helvetica Neue', Helvetica, sans-serif;
+	background: #1E90FF;
+	background-size: 100% 100%;
 }
 
 header {
@@ -24,4 +23,278 @@ header .title {
 	font-weight: 100;
 	margin: 0;
 	padding: 0;
+}
+.msd-container .custom-calendar-full {
+	position: absolute;
+	top: 24px;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	height: auto;
+}
+
+.msd-container .fc-calendar-container {
+	min-height: 450px;
+	min-width: 880px;
+	height: auto;
+	bottom: 0;
+	width: 100%;
+	top: 50px;
+	position: absolute;
+}
+
+.msd-container .custom-header {
+	padding: 20px 0 0 30px;
+}
+
+.msd-container .custom-header h2,
+.msd-container .custom-header h3 {
+	float: left;
+	font-weight: 300;
+	text-transform: uppercase;
+	letter-spacing: 4px;
+	text-shadow: 1px 1px 0 rgba(0,0,0,0.1);
+	margin: 0;
+	font-size: 150%;
+}
+
+
+.msd-container .custom-header h2 {
+	color: #00008b;
+	width: 60%;
+}
+
+.msd-container .custom-header h2 a,
+.msd-container .custom-header h2 span {
+	color: rgba(255,255,255,0.3);
+	font-size: 18px;
+	letter-spacing: 3px;
+	white-space: nowrap;
+}
+
+.msd-container .custom-header h2 a {
+	color: rgba(255,255,255,0.5);
+}
+
+.msd-container .no-touch .custom-header h2 a:hover {
+	color: rgba(255,255,255,0.9);
+}
+
+.msd-container .custom-header h3 {
+	color: #ddd;
+	color: rgba(255,255,255,0.6);
+	font-weight: 300;
+	line-height: 30px;
+}
+
+.msd-container .custom-header nav {
+	position: absolute;
+	right: 20px;
+	top: 20px;
+	width:auto;
+	box-shadow: none;
+	background-color: transparent;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+.msd-container .custom-header nav span {
+	float: left;
+	width: 30px;
+	height: 30px;
+	position: relative;
+	color: transparent;
+	cursor: pointer;
+	background: rgba(255,255,255,0.3);
+	margin: 0 1px;
+	font-size: 20px;
+	border-radius: 0 3px 3px 0;
+	box-shadow: inset 0 1px rgba(255,255,255,0.2);
+	line-height: 1.5;
+}
+
+.msd-container .custom-header nav span:first-child {
+	border-radius: 3px 0 0 3px;
+}
+
+.msd-container .custom-header nav span:hover {
+	background: rgba(255,255,255,0.5);
+}
+
+.msd-container .custom-header span:before {
+	font-family: 'fontawesome-selected';
+	color: #fff;
+	display: inline-block;
+	text-align: center;
+	width: 100%;
+	text-indent: 4px;
+}
+
+.msd-container .custom-header nav .custom-prev:before {
+	content: '\25c2';
+}
+
+.msd-container .custom-header nav .custom-next:before {
+	content: '\25b8';
+}
+
+.msd-container .custom-header nav span:last-child {
+	margin-left: 20px;
+	border-radius: 3px;
+}
+
+.msd-container .custom-header nav .custom-current:before {
+	content: '\27a6';
+}
+
+
+.msd-container .fc-calendar {
+	background: rgba(255,255,255,0.1);
+	width: auto;
+	top: 10px;
+	bottom: 20px;
+	left: 20px;
+	right: 20px;
+	height: auto;
+	border-radius: 20px;
+	position: absolute;
+}
+
+.msd-container .fc-calendar .fc-head {
+	background: rgba(255,255,255,0.2);
+	color: rgba(255,255,255,0.9);
+	box-shadow: inset 0 1px 0 rgba(255,255,255,0.2);
+	border-radius: 20px 20px 0 0;
+	height: 40px;
+	line-height: 40px;
+	padding: 0 20px;
+}
+
+.msd-container .fc-calendar .fc-head > div {
+	font-weight: 300;
+	text-transform: uppercase;
+	font-size: 14px;
+	letter-spacing: 3px;
+	text-shadow: 0 1px 1px rgba(0,0,0,0.4);
+}
+
+.msd-container .fc-calendar .fc-row > div > .fc-date {
+	color: rgba(255,255,255,0.9);
+	font-size: 26px;
+	font-weight: 300;
+	bottom: auto;
+	right: auto;
+	top: 10px;
+	left: 10px;
+	text-align: left;
+	text-shadow: 0 1px 1px rgba(0,0,0,0.3);
+}
+
+.msd-container .fc-calendar .fc-row > div > .fc-emptydate {
+	color: rgba(255,255,255,0.4);
+}
+
+.msd-container .fc-calendar .fc-body {
+	border: none;
+	padding: 20px;
+}
+
+.msd-container .fc-calendar .fc-row {
+	box-shadow: inset 0 -1px 0 rgba(255,255,255,0.2);
+	border: none;
+}
+
+.msd-container .fc-calendar .fc-row:last-child {
+	box-shadow: none;
+}
+
+.msd-container .fc-calendar .fc-row:first-child > div:first-child {
+	border-radius: 10px 0 0 0;
+}
+
+.msd-container .fc-calendar .fc-row:first-child > div:last-child {
+	border-radius: 0 10px 0 0;
+}
+
+.msd-container .fc-calendar .fc-row:last-child > div:first-child {
+	border-radius: 0 0 0 10px;
+}
+
+.msd-container .fc-calendar .fc-row:last-child > div:last-child {
+	border-radius: 0 0 10px 0;
+}
+
+.msd-container .fc-calendar .fc-row > div {
+	box-shadow: -1px 0 0 rgba(255, 255, 255, 0.2);
+	border: none;
+	padding: 10px;
+	cursor: pointer;
+}
+
+.msd-container .fc-calendar .fc-row > div:first-child{
+	box-shadow: none;
+}
+
+.msd-container .fc-calendar .fc-row > .fc-today {
+	background: transparent;
+	box-shadow: inset 0 0 100px rgba(255,255,255,0.1);
+}
+
+
+
+.msd-container .fc-calendar .fc-row > div > div {
+	margin-top: 35px;
+}
+
+.msd-container .fc-calendar .fc-row > div > div a,
+.msd-container .fc-calendar .fc-row > div > div span {
+	color: rgba(255,255,255,0.7);
+	font-size: 12px;
+	text-transform: uppercase;
+	display: inline-block;
+	padding: 3px 5px;
+	border-radius: 3px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	max-width: 100%;
+	margin-bottom: 1px;
+	background: rgba(255,255,255,0.1);
+}
+
+.msd-container .no-touch .fc-calendar .fc-row > div > div a:hover {
+	background: rgba(255,255,255,0.3);
+}
+
+.msd-event {
+	color: #000000;
+	background-color: #fff;
+	float: left;
+}
+.msd-event-fixed.msd-event-joined .msd-btn{
+	color: #ffff00;
+}
+.msd-event-fixed.msd-event-joined {
+	color: #ffff00;
+	background-color: #696969;
+}
+.msd-event-fixed {
+	background-color: #696969;
+}
+.msd-event-joined {
+	background-color: #ffff00;
+}
+.msd-event-joined .msd-btn {
+	background-color: #ffff00;
+}
+.msd-event-fixed .msd-btn {
+	background-color: #696969;
+}
+
+.msd-js-event-people {
+	text-align: center;
 }
