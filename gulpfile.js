@@ -44,6 +44,7 @@ gulp.task('htmlhint', function() {
 gulp.task('csslint', function () {
 	return gulp.src(['css/**/*.css', '!css/lib/**'])
 		.pipe(csslint({
+			'adjoining-classes': false,
 			// FIXME: 警告が多すぎるため、一旦無視
 			'fallback-colors': false,
 			'qualified-headings': false,
@@ -69,7 +70,8 @@ gulp.task('eslint', function () {
 			rules: {
 				'new-cap': [2, {'capIsNewExceptions': ['$.Deferred']}],
 				'quote-props': [2, 'as-needed', { 'keywords': true, 'unnecessary': false }],
-				'no-unused-expressions': [2, { allowShortCircuit: true, allowTernary: true }]
+				'no-unused-expressions': [2, { allowShortCircuit: true, allowTernary: true }],
+				'operator-linebreak': [2, 'before', {'overrides': {'=': 'after'}}]
 			}
 		}))
 		.pipe(eslint.format())
