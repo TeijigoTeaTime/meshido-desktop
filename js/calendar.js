@@ -17,15 +17,17 @@ $(document).ready(function () {
 			// カレンダーの初期化
 			$calendar.calendario({
 				checkUpdate: false,
-				caldata: buildCalData(year, month, res.days),
-				fillEmpty: false
+				fillEmpty: false,
+				caldata: {}
 			});
+			$calendar.calendario('setData',  buildCalData(year, month, res.days));
 		}).fail(function () {
 			$$.alert('カレンダーの取得に失敗しました。');
 		});
 	});
 
 	$(document).on('finish.calendar.calendario', function () {
+		$('.msd-js-calendar-nav').removeClass('hide');
 		updateYearMonth();
 	});
 
@@ -39,6 +41,10 @@ $(document).ready(function () {
 
 	$('#custom-current').on('click', function () {
 		$calendar.calendario('gotoNow', updateYearMonth);
+	});
+
+	$('#msd-reload-calendar').on('click', function () {
+		$(document).trigger('display-calendar');
 	});
 
 	/**

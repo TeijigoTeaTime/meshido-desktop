@@ -3,6 +3,8 @@
 <head>
 	<meta charset="utf-8" />
 	<title>Electron boilerplate</title>
+	<!-- font -->
+	<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	<!-- CSS -->
 	<link rel="stylesheet" href="bower_components/Materialize/dist/css/materialize.css" />
 	<link rel="stylesheet" type="text/css" href="bower_components/Calendario/css/calendar.css" />
@@ -56,10 +58,15 @@
 				<h3 class="custom-month-year">
 					<span id="custom-month" class="custom-month"></span>
 					<span id="custom-year" class="custom-year"></span>
-					<nav>
+					<nav class="msd-js-calendar-nav hide">
+						<!--
 						<span id="custom-prev" class="custom-prev"></span>
 						<span id="custom-next" class="custom-next"></span>
-						<span id="custom-current" class="custom-current" title="Go to current date"></span>
+						<span id="custom-current" class="custom-current"></span>
+						-->
+						<span id="msd-reload-calendar" class="msd-reload-btn">
+							<i class="material-icons">autorenew</i>
+						</span>
 					</nav>
 				</h3>
 			</div>

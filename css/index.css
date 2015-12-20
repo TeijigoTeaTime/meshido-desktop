@@ -89,7 +89,7 @@ header .title {
 
 .msd-container .custom-header nav {
 	position: absolute;
-	right: 20px;
+	right: 30px;
 	top: 20px;
 	width:auto;
 	box-shadow: none;
@@ -151,6 +151,10 @@ header .title {
 	content: '\27a6';
 }
 
+.msd-container .custom-header nav .msd-reload-btn i {
+	color: white;
+	padding: 3px 0 0 3px;
+}
 
 .msd-container .fc-calendar {
 	background: rgba(255,255,255,0.1);
