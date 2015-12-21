@@ -15,8 +15,8 @@
   "scripts": {
     "postinstall": "bower install",
     "start": "electron .",
-    "build:mac": "electron-packager . 'Meshido' --platform=darwin --arch=x64 --version=0.36.1 --out=dist --ignore='^/dist$' --overwrite",
-    "build:win": "electron-packager . 'Meshido' --platform=win32  --arch=ia32 --version=0.36.1 --out=dist --ignore='^/dist$' --overwrite",
+    "build:mac": "electron-packager . Meshido --platform=darwin --arch=x64 --version=0.36.1 --out=dist --ignore='^/dist$' --overwrite",
+    "build:win": "electron-packager . Meshido --platform=win32  --arch=ia32 --version=0.36.1 --out=dist --ignore='^/dist$' --overwrite",
     "bower": "bower",
     "gulp": "gulp",
     "lint": "gulp lint"
