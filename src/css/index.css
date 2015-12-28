@@ -87,7 +87,7 @@ header .title {
 	line-height: 30px;
 }
 
-.msd-container .custom-header nav {
+.msd-container .custom-header .custom-nav {
 	position: absolute;
 	right: 30px;
 	top: 20px;
@@ -102,7 +102,7 @@ header .title {
 	user-select: none;
 }
 
-.msd-container .custom-header nav span {
+.msd-container .custom-header .custom-nav span {
 	float: left;
 	width: 30px;
 	height: 30px;
@@ -117,11 +117,11 @@ header .title {
 	line-height: 1.5;
 }
 
-.msd-container .custom-header nav span:first-child {
+.msd-container .custom-header .custom-nav span:first-child {
 	border-radius: 3px 0 0 3px;
 }
 
-.msd-container .custom-header nav span:hover {
+.msd-container .custom-header .custom-nav span:hover {
 	background: rgba(255,255,255,0.5);
 }
 
@@ -134,24 +134,24 @@ header .title {
 	text-indent: 4px;
 }
 
-.msd-container .custom-header nav .custom-prev:before {
+.msd-container .custom-header .custom-nav .custom-prev:before {
 	content: '\25c2';
 }
 
-.msd-container .custom-header nav .custom-next:before {
+.msd-container .custom-header .custom-nav .custom-next:before {
 	content: '\25b8';
 }
 
-.msd-container .custom-header nav span:last-child {
+.msd-container .custom-header .custom-nav span:last-child {
 	margin-left: 20px;
 	border-radius: 3px;
 }
 
-.msd-container .custom-header nav .custom-current:before {
+.msd-container .custom-header .custom-nav .custom-current:before {
 	content: '\27a6';
 }
 
-.msd-container .custom-header nav .msd-reload-btn i {
+.msd-container .custom-header .custom-nav .msd-reload-btn i {
 	color: white;
 	padding: 3px 0 0 3px;
 }
