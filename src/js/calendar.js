@@ -1,7 +1,7 @@
 'use strict';
 
 $(document).ready(function () {
-	var $calendar = $('#calendar');
+	var $calendar = $('#msd-calendar');
 
 	/**
 	 * カレンダーを表示するイベント
@@ -80,36 +80,57 @@ $(document).ready(function () {
 
 			var date = [calMonth, calDay.dayOfMonth, calYear].join('-');
 			var msdDate = [calYear, calMonth, calDay.dayOfMonth].join('-');
-			var lunchMember = calDay.lunch.participantCount;
-			var dinnerMember = calDay.dinner.participantCount;
-			var content = '<div id="msd-lunch-' + msdDate + '" class="msd-js-event msd-event';
 
 			// 昼の情報
-			if (calDay.lunch.isFixed && calDay.lunch.hasJoined) {
-				content += ' msd-js-event-fixed msd-js-event-joined msd-event-fixed msd-event-joined">';
-			} else if (calDay.lunch.isFixed) {
-				content += ' msd-js-event-fixed msd-event-fixed">';
-			} else if (calDay.lunch.hasJoined) {
-				content += ' msd-js-event-joined msd-event-joined">';
-			} else {
-				content += '">';
+			var $lunch = $('<div>')
+				.attr('id', 'msd-lunch-' + msdDate)
+				.addClass('msd-js-event msd-event');
+
+			if (calDay.lunch.isFixed) {
+				$lunch.addClass('msd-js-event-fixed msd-event-fixed');
 			}
-			content += '<button class="msd-js-join-event msd-btn">昼</button>';
-			content += '<div class="msd-js-event-people">' + lunchMember + '</div></div>';
-			content += '<div id="msd-dinner-' + msdDate + '" class="msd-js-event msd-event';
+			if (calDay.lunch.hasJoined) {
+				$lunch.addClass('msd-js-event-joined msd-event-joined');
+			}
+
+			var $lunchJoinBtn = $('<button>')
+				.addClass('msd-js-join-event msd-btn')
+				.text('昼');
+
+			var $lunchPeopleCnt = $('<div>')
+				.addClass('msd-js-event-people')
+				.text(calDay.lunch.participantCount);
+
+			$lunch.append($lunchJoinBtn);
+			$lunch.append($lunchPeopleCnt);
+
 			// 夜の情報
-			if (calDay.dinner.isFixed && calDay.dinner.hasJoined) {
-				content += ' msd-js-event-fixed msd-js-event-joined msd-event-fixed msd-event-joined">';
-			} else if (calDay.dinner.isFixed) {
-				content += ' msd-js-event-fixed msd-event-fixed">';
-			} else if (calDay.dinner.hasJoined) {
-				content += ' msd-js-event-joined msd-event-joined">';
-			} else {
-				content += '">';
+			var $dinner = $('<div>')
+				.attr('id', 'msd-dinner-' + msdDate)
+				.addClass('msd-js-event msd-event');
+
+			if (calDay.dinner.isFixed) {
+				$dinner.addClass('msd-js-event-fixed msd-event-fixed');
 			}
-			content += '<button class="msd-js-join-event msd-btn">夜</button>';
-			content += '<div class="msd-js-event-people">' + dinnerMember + '</div></div>';
-			events[date] = [{content: content, allDay: true}];
+			if (calDay.dinner.hasJoined) {
+				$dinner.addClass('msd-js-event-joined msd-event-joined');
+			}
+
+			var $dinnerJoinBtn = $('<button>')
+				.addClass('msd-js-join-event msd-btn')
+				.text('夜');
+
+			var $dinnerPeopleCnt = $('<div>')
+				.addClass('msd-js-event-people')
+				.text(calDay.dinner.participantCount);
+
+			$dinner.append($dinnerJoinBtn);
+			$dinner.append($dinnerPeopleCnt);
+
+			events[date] = [{
+				content: $lunch[0].outerHTML + $dinner[0].outerHTML,
+				allDay: true
+			}];
 		}
 
 		return events;

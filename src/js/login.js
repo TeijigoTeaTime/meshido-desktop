@@ -1,7 +1,7 @@
 'use strict';
 
 $(document).ready(function () {
-	var $loginModal = $('#login-modal');
+	var $loginModal = $('#msd-login-modal');
 
 	/**
 	 * ログインダイアログを表示するEvent
@@ -17,11 +17,11 @@ $(document).ready(function () {
 	/**
 	 * ログインボタン押下時のEvent
 	 */
-	$loginModal.on('click', '.js-login-btn', function (e) {
+	$loginModal.on('click', '.msd-js-login-btn', function (e) {
 		e.preventDefault();
 
-		var email = $('#login-email').val();
-		var name = $('#login-name').val();
+		var email = $('#msd-login-email').val();
+		var name = $('#msd-login-name').val();
 
 		login(email, name).then(function (token, group) {
 			// ストレージにユーザ情報を保存
@@ -56,7 +56,7 @@ $(document).ready(function () {
 			url: '/login',
 			method: 'POST',
 			data: {
-				group: window.$$.userGroup,
+				group: $$.userGroup,
 				email: email,
 				name: name
 			}
