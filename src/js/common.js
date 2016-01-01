@@ -44,7 +44,7 @@ window.$$ = {
 			dataType: 'json'
 		});
 
-		opt.url = $$.apiHost + opt.url.replace(':group', window.$$.userGroup);
+		opt.url = $$.apiHost + opt.url.replace(':group', $$.userGroup);
 		opt.data = JSON.stringify(opt.data);
 
 		return ajax(opt);
