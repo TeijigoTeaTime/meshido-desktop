@@ -34,37 +34,34 @@ npm run lint
 ★印・・・Gitの管理対象外
 
 ```
-(project root)
 ├── README.md
 ├── app.js (アプリのエントリーポイントスクリプト)
 ├── bower.json
-├── bower_components/ ★
-├── css/
-│   ├── index.css
-│   └── lib/ (bower管理外のサードパーティーライブラリ)
 ├── dist/ (ビルド成果物(実行バイナリ)) ★
-├── index.html
-├── js/
-│   ├── index.js
-│   └── lib/ (bower管理外のサードパーティーライブラリ)
+├── gulpfile.js
 ├── node_modules/ ★
-└── package.json
+├── package.json
+└── src/
+    ├── bower_components/ ★
+    ├── css/
+    ├── index.html
+    └── js/
 ```
 
 ## アプリのビルド
+
+### for Windows
+
+```bash
+npm run build:win
+ls dist/Meshido-win32-ia32
+```
 
 ### for Mac
 
 ```bash
 npm run build:mac
 ls dist/Meshido-darwin-x64
-```
-
-### for Windows
-
-```bash
-npm run build:win
-ls dist/Meshido-win32-x64
 ```
 
 ## License
